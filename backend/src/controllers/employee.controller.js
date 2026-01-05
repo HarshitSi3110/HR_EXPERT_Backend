@@ -140,3 +140,22 @@ exports.deleteEmployee = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+/* ======================
+   GET EMPLOYEES BY CLIENT
+====================== */
+exports.getEmployeesByClient = async (req, res) => {
+  try {
+    const { clientId } = req.params;
+
+    const employees = await Employee.find({
+      client: clientId,
+      status: 'ACTIVE',
+    }).sort({ name: 1 });
+
+    res.json(employees);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+

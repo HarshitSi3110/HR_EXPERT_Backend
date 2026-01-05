@@ -7,6 +7,13 @@ router.post('/', employeeController.createEmployee);
 
 // READ
 router.get('/', employeeController.getEmployees);
+
+// ⭐ MUST BE BEFORE :id
+router.get(
+  '/by-client/:clientId',
+  employeeController.getEmployeesByClient
+);
+
 router.get('/:id', employeeController.getEmployeeById);
 
 // UPDATE
